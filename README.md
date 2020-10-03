@@ -1,2 +1,2 @@
-### TPU-Toolkit-of-ISPT-lab1
+### TPU-Toolkit-of-ISPT-lab2
 Линейные алгоритмы. Условные операторы. Циклы
