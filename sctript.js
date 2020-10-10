@@ -196,9 +196,9 @@ function countQuantityNegative() {
 
   const NegativeElements = []
   EvenLines.forEach(function (item) {
-    item.forEach(function (negativ, index) {
-      if ((index + 1) % 2 === 0 && negativ < 0) {
-        NegativeElements.push(negativ)
+    item.forEach(function (el, index) {
+      if ((index + 1) % 2 === 0 && el < 0) {
+        NegativeElements.push(el)
       }
     })
   })
@@ -240,3 +240,56 @@ function findPosition() {
 5.	Замена слова в каждой строке массива.
 6.	Удаление строки из массива.
 */
+
+const acrostic = [
+  'Довольно именем известна я своим;',
+  'Равно клянётся плут и непорочный им,',
+  'Утехой в бедствиях всего бываю боле,',
+  'Жизнь сладостней при мне и в самой лучшей доле.',
+  'Блаженству чистых душ могу служить одна,',
+  'А меж злодеями — не быть я создана.'
+]
+
+function addStr() {
+  const str = prompt('Введите строку')
+  const position = prompt('На какую позицию поставить строку?')
+  acrostic.splice(position, 0, str)
+}
+
+function showLines() {
+  console.log(acrostic)
+}
+
+function showSrt() {
+  const position = +prompt('Какую строку вы хотите увидеть?')
+  console.log(acrostic[position - 1])
+}
+
+function addSrt() {
+  const numberStr = +prompt('В какую строку вы хотите добавить слово?')
+  const arrStr = acrostic[numberStr - 1].split(' ')
+  const word = prompt('Введите слово')
+  const position = +prompt('На какую позицию вы хотите поставить слово?')
+  arrStr.splice(position - 1, 0, word)
+  const str = arrStr.join(' ')
+  acrostic.splice(numberStr - 1, 1, str)
+}
+
+function changeSrt() {
+  const numberStr = +prompt('В какой строке вы хотите заменить слово?')
+  const arrStr = acrostic[numberStr - 1].split(' ')
+  const word = prompt('Введите слово')
+  const position = +prompt('На какой позиции стоит слово, которое вы хотите заменить?')
+  arrStr.splice(position - 1, 1, word)
+  const str = arrStr.join(' ')
+  acrostic.splice(numberStr - 1, 1, str)
+}
+
+function deleteWord() {
+  const numberStr = +prompt('В какой строке вы хотите удалить слово?')
+  const arrStr = acrostic[numberStr - 1].split(' ')
+  const position = +prompt('На какой позиции стоит слово, которое вы хотите удалить?')
+  arrStr.splice(position - 1, 1)
+  const str = arrStr.join(' ')
+  acrostic.splice(numberStr - 1, 1, str)
+}
