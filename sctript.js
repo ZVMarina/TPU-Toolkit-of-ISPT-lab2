@@ -53,7 +53,7 @@ function sortNumder() {
   }
 
   console.log(`Исходный массив: [${arr}]`)
-  console.log(`Результат: [${res}]`)
+  console.log(`Сортировка с чередованием "+" и "-" элементов: [${res}]`)
 }
 
 /* Задание 1.3: В массиве A1, A2, ... , An найти максимальный элемент и его местоположение в массиве.
@@ -64,13 +64,14 @@ const findMaxNumberButton = document.querySelector('.findMaxNumberButton')
 findMaxNumberButton.addEventListener('click', findMaxNumber)
 
 function findMaxNumber() {
-  const arr = [1, 2, 3, 4, 100, 6, 7, 8, 9, 1000]
-  const res = arr.sort(function (a, b) {
+  const arr = [1, 2, 3, 100, 5, 6, 7, 1000, 9, 10]
+  const arrCopy = arr.slice()
+  const res = arrCopy.sort(function (a, b) {
     return b - a
   })
   const maxNumber = res[0]
-  console.log(`Массив после сортировки по убыванию: [${arr}]`)
-  console.log(`Наибольшее число: ${maxNumber}`)
+  console.log(`Исходный массив: [${arr}]`)
+  console.log(`Наибольший элемент: ${maxNumber}`)
 }
 
 /* Задание 2.1: Преобразовать квадратную матрицу, поменяв местами столбец с наибольшим количеством элементов кратных 3 со столбцом, в котором сумма четных элементов минимальная
@@ -163,12 +164,50 @@ function transformMatrix() {
 
   console.log('Исходная матрица:')
   console.log(matrix)
+  console.log(`Икомый столбец кратных тройке: ${indexColumnThree + 1}`)
+  console.log(`Икомый столбец суммы чётных: ${indexColumnSum + 1}`)
   console.log('Преобразованная матрица:')
   console.log(finalMatrix)
 }
 
 /* Задание 2.1: Разработать программу подсчета количества отрицательных  элементов целочисленной матрицы A[M*N], стоящих на пересечении  четных строк и столбцов.
 */
+
+const quantityNegativeButton = document.querySelector('.quantityNegativeButton')
+
+quantityNegativeButton.addEventListener('click', countQuantityNegative)
+
+function countQuantityNegative() {
+
+  const matrix =
+    [
+      [1, -2, 3, -4],
+      [5, -6, 7, -8],
+      [9, -10, 11, -12],
+      [13, -14, 15, 16]
+    ]
+
+  const EvenLines = []
+  matrix.forEach(function (item, index) {
+    if ((index + 1) % 2 === 0) {
+      EvenLines.push(item)
+    }
+  })
+
+  const NegativeElements = []
+  EvenLines.forEach(function (item) {
+    item.forEach(function (negativ, index) {
+      if ((index + 1) % 2 === 0 && negativ < 0) {
+        NegativeElements.push(negativ)
+      }
+    })
+  })
+
+  const quantityNegative = NegativeElements.length
+
+  console.log(matrix)
+  console.log(`Количество отрицательных элементов в матрице, стоящих на пересечении  четных строк и столбцов: ${quantityNegative}`)
+}
 
 /* Задание 3.1: Даны два предложения, причем второе состоит из слов первого, записанных в другом порядке. Найти этот порядок.
 */
@@ -194,7 +233,7 @@ function findPosition() {
 }
 
 /* Задание 3.2: Написать программу, реализующую следующие функции работы с массивом строк (путем ввода соответствующих команд в консоли)
-1.	Создание строки и добавление её строки в массив на заданную позицию i (с соответствующим сдвигом всех следующих за i элементов массива).
+1.	Создание строки и добавление её в массив на заданную позицию i (с соответствующим сдвигом всех следующих за i элементов массива).
 2.	Вывод всех строк массива на экран.
 3.	Вывод i строки массива на экран.
 4.	Редактирование i строки массива (добавление нового слова, замена существующего слова, удаление слова).
