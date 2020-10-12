@@ -241,55 +241,108 @@ function findPosition() {
 6.	Удаление строки из массива.
 */
 
-const acrostic = [
-  'Довольно именем известна я своим;',
-  'Равно клянётся плут и непорочный им,',
-  'Утехой в бедствиях всего бываю боле,',
-  'Жизнь сладостней при мне и в самой лучшей доле.',
-  'Блаженству чистых душ могу служить одна,',
-  'А меж злодеями — не быть я создана.'
+let week = [
+  'Понедельник',
+  'Вторник',
+  'Среда',
+  'Четверг',
+  'Пятница',
+  'Суббота',
+  'Воскресенье'
 ]
+
+const addStrButton = document.querySelector('.addStrButton')
+addStrButton.addEventListener('click', addStr)
 
 function addStr() {
   const str = prompt('Введите строку')
   const position = prompt('На какую позицию поставить строку?')
-  acrostic.splice(position, 0, str)
+  week.splice(position - 1, 0, str)
 }
 
-function showLines() {
-  console.log(acrostic)
+const showaArosticButton = document.querySelector('.showaArosticButton')
+showaArosticButton.addEventListener('click', showaArostic)
+
+function showaArostic() {
+  console.log(week)
 }
+
+const showSrtrButton = document.querySelector('.showSrtrButton')
+showSrtrButton.addEventListener('click', showSrt)
 
 function showSrt() {
   const position = +prompt('Какую строку вы хотите увидеть?')
-  console.log(acrostic[position - 1])
+  console.log(week[position - 1])
 }
 
-function addSrt() {
+const addWordButton = document.querySelector('.addWordButton')
+addWordButton.addEventListener('click', addWord)
+
+function addWord() {
   const numberStr = +prompt('В какую строку вы хотите добавить слово?')
-  const arrStr = acrostic[numberStr - 1].split(' ')
+  const arrStr = week[numberStr - 1].split(' ')
   const word = prompt('Введите слово')
   const position = +prompt('На какую позицию вы хотите поставить слово?')
   arrStr.splice(position - 1, 0, word)
   const str = arrStr.join(' ')
-  acrostic.splice(numberStr - 1, 1, str)
+  week.splice(numberStr - 1, 1, str)
 }
 
-function changeSrt() {
+const changeWordButton = document.querySelector('.changeWordButton')
+changeWordButton.addEventListener('click', changeWord)
+
+function changeWord() {
   const numberStr = +prompt('В какой строке вы хотите заменить слово?')
-  const arrStr = acrostic[numberStr - 1].split(' ')
-  const word = prompt('Введите слово')
+  const arrStr = week[numberStr - 1].split(' ')
   const position = +prompt('На какой позиции стоит слово, которое вы хотите заменить?')
+  const word = prompt('Введите новое слово')
   arrStr.splice(position - 1, 1, word)
   const str = arrStr.join(' ')
-  acrostic.splice(numberStr - 1, 1, str)
+  week.splice(numberStr - 1, 1, str)
 }
+
+const deleteWordButton = document.querySelector('.deleteWordButton')
+deleteWordButton.addEventListener('click', deleteWord)
 
 function deleteWord() {
   const numberStr = +prompt('В какой строке вы хотите удалить слово?')
-  const arrStr = acrostic[numberStr - 1].split(' ')
+  const arrStr = week[numberStr - 1].split(' ')
   const position = +prompt('На какой позиции стоит слово, которое вы хотите удалить?')
   arrStr.splice(position - 1, 1)
   const str = arrStr.join(' ')
-  acrostic.splice(numberStr - 1, 1, str)
+  week.splice(numberStr - 1, 1, str)
+}
+
+const changeWordStrButton = document.querySelector('.changeWordStrButton')
+changeWordStrButton.addEventListener('click', changeWordStr)
+
+function changeWordStr() {
+  const position = +prompt('На какой позиции стоит слово, которое вы хотите заменить?')
+  const word = prompt('Введите новое слово')
+  const newWeek = []
+  week.forEach(function (str) {
+    const res = str.split(' ').map(function (item, index) {
+      if (index + 1 === position) {
+        return item = word
+      } else {
+        return item
+      }
+    })
+    const newStr = res.join(' ')
+    newWeek.push(newStr)
+  })
+  week = newWeek
+}
+
+const deleteStrButton = document.querySelector('.deleteStrButton')
+deleteStrButton.addEventListener('click', deleteStr)
+
+function deleteStr() {
+  const position = +prompt('Введите номер строки, которую вы хотите удалить')
+  const newWeek = week.filter(function (item, index) {
+    if (index + 1 !== position) {
+      return item
+    }
+  })
+  week = newWeek
 }
