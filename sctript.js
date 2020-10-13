@@ -2,18 +2,17 @@
 // Задание 1.1: В массиве А1, ... , Аn найти количество элементов равных единице, стоящих на чётных местах.
 
 const findNumberOneButton = document.querySelector('.findNumberOneButton')
-
 findNumberOneButton.addEventListener('click', findNumberOne)
 
 function findNumberOne() {
-  const arr = [0, 1, 1, 1, 5, 6, 7, 1, 1]
-  const res = arr.filter(function (item, index) {
+  const arr = [0, 1, 1, 1, 5, 6, 7, 2, 1]
+  const arrOfOnes = arr.filter(function (item, index) {
     if ([index + 1] % 2 === 0 && item === 1) {
       return item
     }
   })
   console.log(`Исходный массив: [${arr}]`)
-  console.log(`Количество едениц, стоящих на чётных местах: ${res.length}`)
+  console.log(`Количество едениц, стоящих на чётных местах: ${arrOfOnes.length}`)
 }
 
 /* Задание 1.2: Известно, что в массиве А1,А2,...,Аn количество отрицательных чисел равно количеству положительных. 
@@ -21,55 +20,53 @@ function findNumberOne() {
 */
 
 const sortNumderButton = document.querySelector('.sortNumderButton')
-
 sortNumderButton.addEventListener('click', sortNumder)
 
 function sortNumder() {
-  const arr = [1, 2, 3, , -56, 34, 104, -102, 4, -5, -6, -7, -8]
+  const arr = [1, 2, 3, -56, 34, 104, -102, 4, -5, -6, -7, -8]
 
-  const res1 = arr.filter(function (item) {
+  const arrNegativeElements = arr.filter(function (item) {
     if (item < 0) {
       return item
     }
   })
 
-  const res2 = arr.filter(function (item) {
+  const arrPositiveElements = arr.filter(function (item) {
     if (item > 0) {
       return item
     }
   })
 
-  const res = []
+  const arrAlternation = []
   let x = 0
   let y = 0
   for (let i = 0; i < arr.length; i++) {
     if (i % 2 === 0) {
-      res.push(res2[x])
+      arrAlternation.push(arrPositiveElements[x])
       x += 1
     } else {
-      res.push(res1[y])
+      arrAlternation.push(arrNegativeElements[y])
       y += 1
     }
   }
 
   console.log(`Исходный массив: [${arr}]`)
-  console.log(`Сортировка с чередованием "+" и "-" элементов: [${res}]`)
+  console.log(`Сортировка с чередованием "+" и "-" элементов: [${arrAlternation}]`)
 }
 
 /* Задание 1.3: В массиве A1, A2, ... , An найти максимальный элемент и его местоположение в массиве.
 */
 
 const findMaxNumberButton = document.querySelector('.findMaxNumberButton')
-
 findMaxNumberButton.addEventListener('click', findMaxNumber)
 
 function findMaxNumber() {
   const arr = [1, 2, 3, 100, 5, 6, 7, 1000, 9, 10]
   const arrCopy = arr.slice()
-  const res = arrCopy.sort(function (a, b) {
+  const fromBigtoSmall = arrCopy.sort(function (a, b) {
     return b - a
   })
-  const maxNumber = res[0]
+  const maxNumber = fromBigtoSmall[0]
   console.log(`Исходный массив: [${arr}]`)
   console.log(`Наибольший элемент: ${maxNumber}`)
 }
@@ -78,7 +75,6 @@ function findMaxNumber() {
 */
 
 const transformMatrixButton = document.querySelector('.transformMatrixButton')
-
 transformMatrixButton.addEventListener('click', transformMatrix)
 
 function transformMatrix() {
@@ -103,7 +99,7 @@ function transformMatrix() {
     reverseMatrix.push(newArr)
   }
 
-  // Добавляем в пустой массив количество троек в каждом столбце
+  // Добавляем в пустой массив количество элементов, кратных тройке
   const quantityMultiples = []
   reverseMatrix.forEach(function (arrItem) {
     const quantity = arrItem.reduce(function (prevValue, item) {
@@ -115,7 +111,7 @@ function transformMatrix() {
     quantityMultiples.push(quantity)
   })
 
-  // Добавляем в пустой массив сумму чётных каждого столбца
+  // Добавляем в пустой массив сумму чётных
   const quantityEven = []
   reverseMatrix.forEach(function (arrItem) {
     const quantity = arrItem.reduce(function (prevValue, item) {
@@ -145,12 +141,12 @@ function transformMatrix() {
     }
   })
 
-  // Меняем столбцы местами
+  // Меняем строки местами 
   const reverseMatrixCopy = reverseMatrix.slice()
   reverseMatrix[indexColumnThree] = reverseMatrix[indexColumnSum]
   reverseMatrix[indexColumnSum] = reverseMatrixCopy[indexColumnThree]
 
-  // Столбцы делаем строками
+  // Строки делаем столбцами
   const finalMatrix = []
   let indexFinalMatrix = 0;
   for (let i = 0; i < reverseMatrix.length; i++) {
@@ -174,7 +170,6 @@ function transformMatrix() {
 */
 
 const quantityNegativeButton = document.querySelector('.quantityNegativeButton')
-
 quantityNegativeButton.addEventListener('click', countQuantityNegative)
 
 function countQuantityNegative() {
@@ -203,17 +198,16 @@ function countQuantityNegative() {
     })
   })
 
-  const quantityNegative = NegativeElements.length
+  const quantityNegativeEl = NegativeElements.length
 
   console.log(matrix)
-  console.log(`Количество отрицательных элементов в матрице, стоящих на пересечении  четных строк и столбцов: ${quantityNegative}`)
+  console.log(`Количество отрицательных элементов в матрице, стоящих на пересечении  четных строк и столбцов: ${quantityNegativeEl}`)
 }
 
 /* Задание 3.1: Даны два предложения, причем второе состоит из слов первого, записанных в другом порядке. Найти этот порядок.
 */
 
 const findPositionButton = document.querySelector('.findPositionButton')
-
 findPositionButton.addEventListener('click', findPosition)
 
 function findPosition() {
@@ -242,13 +236,13 @@ function findPosition() {
 */
 
 let week = [
-  'Понедельник',
-  'Вторник',
-  'Среда',
-  'Четверг',
-  'Пятница',
-  'Суббота',
-  'Воскресенье'
+  '1 Понедельник',
+  '2 Вторник',
+  '3 Среда',
+  '4 Четверг',
+  '5 Пятница',
+  '6 Суббота',
+  '7 Воскресенье'
 ]
 
 const addStrButton = document.querySelector('.addStrButton')
